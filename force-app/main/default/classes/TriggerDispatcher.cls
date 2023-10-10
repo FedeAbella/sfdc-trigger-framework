@@ -51,25 +51,25 @@ public with sharing class TriggerDispatcher {
 
         switch on this.operation {
             when BEFORE_INSERT {
-                handler.beforeInsert();
-            }
-            when BEFORE_UPDATE {
-                handler.beforeUpdate();
-            }
-            when BEFORE_DELETE {
-                handler.beforeDelete();
+                handler.beforeInsert(Trigger.new);
             }
             when AFTER_INSERT {
-                handler.afterInsert();
+                handler.afterInsert(Trigger.newMap);
+            }
+            when BEFORE_UPDATE {
+                handler.beforeUpdate(Trigger.oldMap, Trigger.newMap);
             }
             when AFTER_UPDATE {
-                handler.afterUpdate();
+                handler.afterUpdate(Trigger.oldMap, Trigger.newMap);
+            }
+            when BEFORE_DELETE {
+                handler.beforeDelete(Trigger.oldMap);
             }
             when AFTER_DELETE {
-                handler.afterDelete();
+                handler.afterDelete(Trigger.oldMap);
             }
             when AFTER_UNDELETE {
-                handler.afterUndelete();
+                handler.afterUndelete(Trigger.newMap);
             }
         }
     }
