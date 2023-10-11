@@ -116,8 +116,9 @@ public with sharing class TriggerDispatcher {
      */
     public static Boolean isTriggerDisabled(SObjectType objectType, System.TriggerOperation operation) {
         SObjectField indicatingField = OPERATION_DISABLED_FIELD_MAP.get(operation);
-        return triggerMetadataMap.containsKey(objectType) &&
-            (Boolean) triggerMetadataMap.get(objectType).get(indicatingField);
+        return isTriggerDisabled(objectType) ||
+            (triggerMetadataMap.containsKey(objectType) &&
+            (Boolean) triggerMetadataMap.get(objectType).get(indicatingField));
     }
 
     /**
@@ -127,8 +128,9 @@ public with sharing class TriggerDispatcher {
      * @return whether that trigger operation for that object is bypassed for this transaction
      */
     public static Boolean isTriggerBypassed(SObjectType objectType, System.TriggerOperation operation) {
-        return bypassedObjectOperationsMap.containsKey(objectType) &&
-            bypassedObjectOperationsMap.get(objectType).contains(operation);
+        return isTriggerBypassed(objectType) ||
+            (bypassedObjectOperationsMap.containsKey(objectType) &&
+            bypassedObjectOperationsMap.get(objectType).contains(operation));
     }
 
     /**
