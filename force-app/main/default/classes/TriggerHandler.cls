@@ -1,8 +1,8 @@
 /**
- * @description Virtual class used to implement Trigger Handler logics, ensuring they all implement the required
+ * @description Abstract class used to implement Trigger Handler logics, ensuring they all implement the required
  * interface to be called from TriggerDispatcher, while providing useful auxiliary methods.
  */
-public with sharing virtual class TriggerHandler implements ITriggerHandlerInterface {
+public with sharing abstract class TriggerHandler implements ITriggerHandlerInterface {
     private static final String ID_FIELD = 'Id';
 
     @testVisible
