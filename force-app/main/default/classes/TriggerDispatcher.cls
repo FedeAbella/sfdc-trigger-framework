@@ -3,9 +3,8 @@
  * appropriate login in the given trigger handler.
  */
 public with sharing class TriggerDispatcher {
-    private static final String OUTSIDE_TRIGGER_EXCEPTION_MESSAGE = 'Trigger Dispatcher called outside of Trigger execution';
-    private static final String NULL_HANDLER_VALIDATOR_EXCEPTION_MESSAGE = 'Trigger Dispatcher requires non-null handler and validator';
-
+    public static final String OUTSIDE_TRIGGER_EXCEPTION_MESSAGE = 'Trigger Dispatcher called outside of Trigger execution';
+    public static final String NULL_HANDLER_VALIDATOR_EXCEPTION_MESSAGE = 'Trigger Dispatcher requires non-null handler and validator';
     @TestVisible
     private TriggerOperation operation;
     @TestVisible
@@ -57,7 +56,6 @@ public with sharing class TriggerDispatcher {
         }
     }
 
-    @TestVisible
     private Boolean validateRun(ITriggerHandlerInterface handler, ITriggerValidatorInterface validator) {
         if (this.objectType == null || this.operation == null) {
             throw new TriggerDispatcherException(OUTSIDE_TRIGGER_EXCEPTION_MESSAGE);
@@ -68,16 +66,8 @@ public with sharing class TriggerDispatcher {
         return validator.isTriggerValidatedToRun(this.objectType, this.operation) && !handler.isDisabled();
     }
 
-    /**
-     * @description Returns the object that triggers are currently being run for, or null if called outside a trigger
-     * operation
-     * @return the SObjectType of the currently triggering object
-     */
-    public static SObjectType getCurrentTriggerSObjectType() {
-        if (!Trigger.isExecuting) {
-            return null;
-        }
-        return Trigger.isDelete ? (Trigger.old).getSObjectType() : Trigger.new.getSObjectType();
+    private static SObjectType getCurrentTriggerSObjectType() {
+        return (Trigger.old != null) ? (Trigger.old).getSObjectType() : (Trigger.new)?.getSObjectType();
     }
 
     /**
