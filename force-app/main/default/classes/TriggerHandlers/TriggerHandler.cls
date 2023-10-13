@@ -64,42 +64,52 @@ public with sharing abstract class TriggerHandler implements ITriggerHandlerInte
     public virtual void afterUndelete(Map<Id, SObject> newRecordsMap) {
     }
 
+    @testVisible
     protected Boolean isBeforeInsert() {
         return this.isTriggerExecuting && this.operation == System.TriggerOperation.BEFORE_INSERT;
     }
 
+    @testVisible
     protected Boolean isAfterInsert() {
         return this.isTriggerExecuting && this.operation == System.TriggerOperation.AFTER_INSERT;
     }
 
+    @testVisible
     protected Boolean isInsert() {
         return this.isBeforeInsert() || this.isAfterInsert();
     }
 
+    @testVisible
     protected Boolean isBeforeUpdate() {
         return this.isTriggerExecuting && this.operation == System.TriggerOperation.BEFORE_UPDATE;
     }
 
+    @testVisible
     protected Boolean isAfterUpdate() {
         return this.isTriggerExecuting && this.operation == System.TriggerOperation.AFTER_UPDATE;
     }
 
+    @testVisible
     protected Boolean isUpdate() {
         return this.isBeforeUpdate() || this.isAfterUpdate();
     }
 
+    @testVisible
     protected Boolean isBeforeDelete() {
         return this.isTriggerExecuting && this.operation == System.TriggerOperation.BEFORE_DELETE;
     }
 
+    @testVisible
     protected Boolean isAfterDelete() {
         return this.isTriggerExecuting && this.operation == System.TriggerOperation.AFTER_DELETE;
     }
 
+    @testVisible
     protected Boolean isDelete() {
         return this.isBeforeDelete() || this.isAfterDelete();
     }
 
+    @testVisible
     protected Boolean isUndelete() {
         return this.isTriggerExecuting && this.operation == System.TriggerOperation.AFTER_UNDELETE;
     }
@@ -122,6 +132,7 @@ public with sharing abstract class TriggerHandler implements ITriggerHandlerInte
         return Trigger.oldMap?.get(recordId);
     }
 
+    @testVisible
     protected Boolean isChanged(SObject newRecordVersion, SObjectField field) {
         if (newRecordVersion == null || field == null || (!this.isInsert() && !this.isUpdate())) {
             return false;
@@ -144,6 +155,7 @@ public with sharing abstract class TriggerHandler implements ITriggerHandlerInte
             (populatedFields.get(fieldName) != oldPopulatedFields.get(fieldName))));
     }
 
+    @testVisible
     protected Boolean isAnyChanged(SObject newRecordVersion, Set<SObjectField> fields) {
         for (SObjectField field : fields) {
             if (isChanged(newRecordVersion, field)) {
