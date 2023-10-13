@@ -143,9 +143,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.isNull(
@@ -169,9 +170,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.areEqual(
@@ -196,9 +198,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.areEqual(
@@ -223,9 +226,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.areEqual(
@@ -250,9 +254,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.areEqual(
@@ -277,9 +282,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.areEqual(
@@ -304,9 +310,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.areEqual(
@@ -331,9 +338,10 @@ private class TriggerDispatcherTest {
                 ITriggerValidatorInterface.class,
                 validatorStubProvider
             );
+            ITriggerHandlerStub handlerStubProvider = new ITriggerHandlerStub();
             ITriggerHandlerInterface handlerStub = (ITriggerHandlerInterface) Test.createStub(
                 ITriggerHandlerInterface.class,
-                new ITriggerHandlerStub()
+                handlerStubProvider
             );
             dispatcher.run(handlerStub, validatorStub);
             Assert.areEqual(

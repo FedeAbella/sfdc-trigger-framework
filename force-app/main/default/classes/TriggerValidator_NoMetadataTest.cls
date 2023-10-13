@@ -5,11 +5,11 @@ private class TriggerValidator_NoMetadataTest {
         User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
 
         System.runAs(runningUser) {
-            TriggerValidator validator = new TriggerValidator();
+            TriggerValidator_NoMetadata validator = new TriggerValidator_NoMetadata();
             for (TriggerOperation operation : TriggerOperation.values()) {
                 Assert.isTrue(
                     validator.isTriggerValidatedToRun(Account.getSObjectType(), operation),
-                    'By default, TriggerValidator should validate any trigger operation to run'
+                    'By default, TriggerValidator_NoMetadata should validate any trigger operation to run'
                 );
             }
         }
@@ -20,8 +20,8 @@ private class TriggerValidator_NoMetadataTest {
         User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
 
         System.runAs(runningUser) {
-            TriggerValidator validator = new TriggerValidator();
-            TriggerValidator.bypassTrigger(Account.getSObjectType());
+            TriggerValidator_NoMetadata validator = new TriggerValidator_NoMetadata();
+            TriggerValidator_NoMetadata.bypassTrigger(Account.getSObjectType());
             for (TriggerOperation operation : TriggerOperation.values()) {
                 Assert.isFalse(
                     validator.isTriggerValidatedToRun(Account.getSObjectType(), operation),
@@ -36,9 +36,9 @@ private class TriggerValidator_NoMetadataTest {
         User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
 
         System.runAs(runningUser) {
-            TriggerValidator validator = new TriggerValidator();
+            TriggerValidator_NoMetadata validator = new TriggerValidator_NoMetadata();
             TriggerOperation bypassedOperation = TriggerOperation.BEFORE_INSERT;
-            TriggerValidator.bypassTrigger(Account.getSObjectType(), bypassedOperation);
+            TriggerValidator_NoMetadata.bypassTrigger(Account.getSObjectType(), bypassedOperation);
             for (TriggerOperation operation : TriggerOperation.values()) {
                 if (operation == bypassedOperation) {
                     Assert.isFalse(
@@ -60,9 +60,9 @@ private class TriggerValidator_NoMetadataTest {
         User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
 
         System.runAs(runningUser) {
-            TriggerValidator.bypassTrigger(Account.getSObjectType());
-            TriggerValidator.clearTriggerBypass(Account.getSObjectType());
-            TriggerValidator validator = new TriggerValidator();
+            TriggerValidator_NoMetadata.bypassTrigger(Account.getSObjectType());
+            TriggerValidator_NoMetadata.clearTriggerBypass(Account.getSObjectType());
+            TriggerValidator_NoMetadata validator = new TriggerValidator_NoMetadata();
             for (TriggerOperation operation : TriggerOperation.values()) {
                 Assert.isTrue(
                     validator.isTriggerValidatedToRun(Account.getSObjectType(), operation),
@@ -77,12 +77,12 @@ private class TriggerValidator_NoMetadataTest {
         User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
 
         System.runAs(runningUser) {
-            TriggerValidator validator = new TriggerValidator();
+            TriggerValidator_NoMetadata validator = new TriggerValidator_NoMetadata();
             TriggerOperation clearedOperation = TriggerOperation.BEFORE_INSERT;
             for (TriggerOperation operation : TriggerOperation.values()) {
-                TriggerValidator.bypassTrigger(Account.getSObjectType(), operation);
+                TriggerValidator_NoMetadata.bypassTrigger(Account.getSObjectType(), operation);
                 if (operation == clearedOperation) {
-                    TriggerValidator.clearTriggerBypass(Account.getSObjectType(), operation);
+                    TriggerValidator_NoMetadata.clearTriggerBypass(Account.getSObjectType(), operation);
                     Assert.isTrue(
                         validator.isTriggerValidatedToRun(Account.getSObjectType(), operation),
                         'Cleared operation should be validated to run'
@@ -102,10 +102,10 @@ private class TriggerValidator_NoMetadataTest {
         User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
 
         System.runAs(runningUser) {
-            TriggerValidator validator = new TriggerValidator();
+            TriggerValidator_NoMetadata validator = new TriggerValidator_NoMetadata();
             TriggerOperation clearedOperation = TriggerOperation.BEFORE_INSERT;
-            TriggerValidator.bypassTrigger(Account.getSObjectType());
-            TriggerValidator.clearTriggerBypass(Account.getSObjectType(), clearedOperation);
+            TriggerValidator_NoMetadata.bypassTrigger(Account.getSObjectType());
+            TriggerValidator_NoMetadata.clearTriggerBypass(Account.getSObjectType(), clearedOperation);
             Assert.isFalse(
                 validator.isTriggerValidatedToRun(Account.getSObjectType(), clearedOperation),
                 'Clearing a particular operation does not validate it while object remains bypassed'
@@ -117,18 +117,18 @@ private class TriggerValidator_NoMetadataTest {
     static void validatesAllTriggersIfAllBypassesAreCleared() {
         User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
 
-        TriggerValidator.bypassTrigger(Account.getSObjectType());
+        TriggerValidator_NoMetadata.bypassTrigger(Account.getSObjectType());
         for (TriggerOperation operation : TriggerOperation.values()) {
-            TriggerValidator.bypassTrigger(Contact.getSObjectType(), operation);
+            TriggerValidator_NoMetadata.bypassTrigger(Contact.getSObjectType(), operation);
         }
 
-        TriggerValidator.clearAllTriggerBypasses();
+        TriggerValidator_NoMetadata.clearAllTriggerBypasses();
         System.runAs(runningUser) {
-            TriggerValidator validator = new TriggerValidator();
+            TriggerValidator_NoMetadata validator = new TriggerValidator_NoMetadata();
             for (TriggerOperation operation : TriggerOperation.values()) {
                 Assert.isTrue(
                     validator.isTriggerValidatedToRun(Account.getSObjectType(), operation),
-                    'TriggerValidator should validate any trigger operation to run after bypasses were cleared'
+                    'TriggerValidator_NoMetadata should validate any trigger operation to run after bypasses were cleared'
                 );
             }
         }
