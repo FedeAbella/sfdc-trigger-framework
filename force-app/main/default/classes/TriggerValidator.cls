@@ -14,12 +14,13 @@ public with sharing class TriggerValidator implements ITriggerValidatorInterface
         TriggerOperation.AFTER_UNDELETE => Trigger_Setting__mdt.After_Undelete_Disabled__c
     };
 
+    @testVisible
     private static Map<SObjectType, Trigger_Setting__mdt> triggerMetadataMap;
     private static Set<SObjectType> bypassedTriggeringObjects;
     private static Map<SObjectType, Set<TriggerOperation>> bypassedObjectOperationsMap;
 
     static {
-        getTriggerMetadataStates();
+        getTriggerMetadataRecords();
         bypassedTriggeringObjects = new Set<SObjectType>();
         bypassedObjectOperationsMap = new Map<SObjectType, Set<TriggerOperation>>();
     }
@@ -131,7 +132,7 @@ public with sharing class TriggerValidator implements ITriggerValidatorInterface
      * @description Builds a map of Trigger_Setting__mdt records mapped by their SObjectTypes, only the first time
      * this class is invoked during a transaction.
      */
-    private static void getTriggerMetadataStates() {
+    private static void getTriggerMetadataRecords() {
         List<Trigger_Setting__mdt> allTriggerMetadata = [
             SELECT
                 Object__r.QualifiedApiName,
