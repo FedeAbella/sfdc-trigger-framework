@@ -63,7 +63,7 @@ public with sharing class TriggerDispatcher {
         if (handler == null || validator == null) {
             throw new TriggerDispatcherException(NULL_HANDLER_VALIDATOR_EXCEPTION_MESSAGE);
         }
-        return validator.isTriggerValidatedToRun(this.objectType, this.operation) && !handler.isDisabled();
+        return validator.isTriggerValidatedToRun(this.objectType, this.operation);
     }
 
     private static SObjectType getCurrentTriggerSObjectType() {

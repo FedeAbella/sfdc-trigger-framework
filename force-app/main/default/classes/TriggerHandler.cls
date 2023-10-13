@@ -6,8 +6,6 @@ public with sharing abstract class TriggerHandler implements ITriggerHandlerInte
     private static final String ID_FIELD = 'Id';
 
     @testVisible
-    protected Boolean isHandlerDisabled;
-    @testVisible
     private Boolean isTriggerExecuting;
     @testVisible
     private System.TriggerOperation operation;
@@ -22,13 +20,6 @@ public with sharing abstract class TriggerHandler implements ITriggerHandlerInte
         operation = Trigger.operationType;
     }
 
-    /**
-     * @description Checks whether the Handler is currently disabled from running.
-     * @return whether the handler is currently disabled
-     */
-    public virtual Boolean isDisabled() {
-        return isHandlerDisabled;
-    }
     /**
      * @description Handles the logic that is to be performed on Before Insert operations.
      * @param newRecords the list of records being inserted

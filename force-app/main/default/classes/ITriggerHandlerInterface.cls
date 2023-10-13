@@ -3,13 +3,6 @@
  */
 public interface ITriggerHandlerInterface {
     /**
-     * @description Allows each helper to define custom logic for
-     * not running.
-     * @return Whether the Helper is disabled from running
-     */
-    Boolean isDisabled();
-
-    /**
      * @description Signature for logic that is to be run on Before Insert trigger context when this Helper is used
      * @param newRecords the list of records being inserted
      */

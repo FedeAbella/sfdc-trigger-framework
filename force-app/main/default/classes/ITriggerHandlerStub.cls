@@ -12,10 +12,6 @@ public class ITriggerHandlerStub implements System.StubProvider {
     };
 
     /**
-     * @description Allows setting the return value of a call to the isHandlerDisabled method
-     */
-    public Boolean isHandlerDisabled { private get; set; }
-    /**
      * @description Allows retrieving what method was called when one of the trigger operation methods is called
      */
     public TriggerOperation requestedOperation { get; private set; }
@@ -28,7 +24,7 @@ public class ITriggerHandlerStub implements System.StubProvider {
      * @param listOfParamTypes the list of parameter types passed to the invoked method
      * @param listOfParamNames the list of paramenter Names passed to the invoked method
      * @param listOfArgs the list of actual arguments passed to the invoked method
-     * @return Boolean or null, depending on the called method
+     * @return null
      */
     public Object handleMethodCall(
         Object stubbedObject,
@@ -38,11 +34,7 @@ public class ITriggerHandlerStub implements System.StubProvider {
         List<String> listOfParamNames,
         List<Object> listOfArgs
     ) {
-        if (stubbedMethodName == 'isDisabled') {
-            return this.isHandlerDisabled;
-        } else {
-            this.requestedOperation = METHOD_NAME_OPERATION_MAP.get(stubbedMethodName);
-            return null;
-        }
+        this.requestedOperation = METHOD_NAME_OPERATION_MAP.get(stubbedMethodName);
+        return null;
     }
 }
