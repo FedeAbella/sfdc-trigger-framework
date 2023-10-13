@@ -12,10 +12,9 @@ public with sharing abstract class TriggerHandler implements ITriggerHandlerInte
 
     /**
      * @description TriggerHandler constructor. Sets whether this is being constructed from within a trigger context,
-     * and what trigger operation is being performed. Defaults the handler to not be disabled.
+     * and what trigger operation is being performed.
      */
     public TriggerHandler() {
-        isHandlerDisabled = false;
         isTriggerExecuting = Trigger.isExecuting;
         operation = Trigger.operationType;
     }
