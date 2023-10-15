@@ -3,7 +3,7 @@
  * interface to be called from TriggerDispatcher, while providing useful auxiliary methods.
  */
 public with sharing abstract class TriggerHandler implements ITriggerHandlerInterface {
-    private static final String ID_FIELD = 'Id';
+    private static final String ID_FIELD = Account.Id.getDescribe().getName(); // All Id fields have the same name
 
     @testVisible
     private Boolean isTriggerExecuting;
