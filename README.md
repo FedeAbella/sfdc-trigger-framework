@@ -51,11 +51,11 @@ Here's the Apex coverage as it stands on 2023-10-13 (I'll do my best to update t
 
 | CLASSES                     | PERCENT | UNCOVERED LINES |
 | --------------------------- | ------- | --------------- |
-| TriggerValidator            | 94%     | 153,154,155     |
 | TriggerDispatcher           | 100%    |                 |
-| TriggerHandler_NoUtils      | 100%    |                 |
-| TriggerValidator_NoMetadata | 100%    |                 |
 | TriggerHandler              | 98%     | 155             |
+| TriggerHandler_NoUtils      | 100%    |                 |
+| TriggerValidator            | 94%     | 153,154,155     |
+| TriggerValidator_NoMetadata | 100%    |                 |
 
 Now, you may be asking what test classes you'll need to take if you're only picking and choosing some Handler, Validator, or none at all. Here's the rundown:
 
